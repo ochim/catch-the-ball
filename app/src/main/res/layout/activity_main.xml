@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="RtlHardcoded,RtlSymmetry,ContentDescription">
 
     <TextView
         android:id="@+id/scoreLabel"
@@ -12,7 +13,7 @@
         android:layout_height="50dp"
         android:gravity="center_vertical"
         android:paddingStart="10dp"
-        android:text="Score : 300"
+        android:text="@string/score"
         android:textSize="18sp" />
 
     <FrameLayout
@@ -50,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="タップしてスタート"
+            android:text="@string/tap_to_start"
             android:textSize="20sp" />
 
     </FrameLayout>

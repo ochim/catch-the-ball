@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Catch the Ball</string>
+    <string name="point_pink">30 point</string>
+    <string name="btn_start">START</string>
+    <string name="point_orange">10 point</string>
+    <string name="point_black">Game Over</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="tap_to_start">タップしてスタート</string>
+    <string name="score">Score : %d</string>
+    <string name="high_score">High Score : %d</string>
+    <string name="try_again">もう一度プレイ</string>
 </resources>

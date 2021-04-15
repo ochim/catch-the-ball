@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    tools:ignore="RtlHardcoded,RtlSymmetry">
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,11 +24,29 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/pink"/>
+                android:src="@drawable/pink"
+                android:contentDescription="@null" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30 point"
+                android:text="@string/point_pink"
+                android:textSize="18sp"
+                android:paddingLeft="10dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/orange"
+                android:contentDescription="@null"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/point_orange"
                 android:textSize="18sp"
                 android:paddingLeft="10dp"/>
         </TableRow>
@@ -39,26 +57,12 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/orange"/>
+                android:src="@drawable/black"
+                android:contentDescription="@null"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 point"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"/>
-        </TableRow>
-
-        <TableRow
-            android:gravity="center_vertical"
-            android:layout_marginTop="20dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/black"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Game Over"
+                android:text="@string/point_black"
                 android:textSize="18sp"
                 android:paddingLeft="10dp"/>
         </TableRow>
@@ -67,7 +71,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START"
+        android:text="@string/btn_start"
         android:layout_marginTop="60dp"
         android:onClick="startGame"/>
 
