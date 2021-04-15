@@ -1,5 +1,6 @@
 package com.example.catchtheball;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -158,6 +159,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // 結果画面へ
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra("SCORE", score);
+            startActivity(intent);
         }
     }
 
