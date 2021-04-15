@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private int frameHeight;
     private int boxSize;
     private int screenWidth;
-    private int screenHeight;
 
     // ボックスやボールの位置
     private float boxY;
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private int score = 0;
 
     // Handler & Timer
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private Timer timer = new Timer();
 
     // Status
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
         screenWidth = size.x;
-        screenHeight = size.y;
+        int screenHeight = size.y;
 
         boxSpeed = Math.round(screenHeight / 60f);
         orangeSpeed = Math.round(screenWidth / 60f);
@@ -95,14 +94,14 @@ public class MainActivity extends AppCompatActivity {
         black.setX(-80.0f);
         black.setY(-80.0f);
 
-        scoreLabel.setText("Score : 0");
+        scoreLabel.setText(getString(R.string.score, 0));
     }
 
     private void changePos() {
 
         hitCheck();
 
-        scoreLabel.setText("Score : " + score);
+        scoreLabel.setText(getString(R.string.score, score));
 
         // Orange
         orangeX -= orangeSpeed;
@@ -150,8 +149,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void hitCheck() {
         // Orange
-        float orangeCenterX = orangeX + orange.getWidth() / 2;
-        float orangeCenterY = orangeY + orange.getHeight() / 2;
+        float orangeCenterX = orangeX + orange.getWidth() / 2.0f;
+        float orangeCenterY = orangeY + orange.getHeight() / 2.0f;
 
         if (hitStatus(orangeCenterX, orangeCenterY)) {
             orangeX = -10.0f;
@@ -160,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Pink
-        float pinkCenterX = pinkX + pink.getWidth() / 2;
-        float pinkCenterY = pinkY + pink.getHeight() / 2;
+        float pinkCenterX = pinkX + pink.getWidth() / 2.0f;
+        float pinkCenterY = pinkY + pink.getHeight() / 2.0f;
 
         if (hitStatus(pinkCenterX, pinkCenterY)) {
             pinkX = -10.0f;
@@ -170,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Black
-        float blackCenterX = blackX + black.getWidth() / 2;
-        float blackCenterY = blackY + black.getHeight() / 2;
+        float blackCenterX = blackX + black.getWidth() / 2.0f;
+        float blackCenterY = blackY + black.getHeight() / 2.0f;
 
         if (hitStatus(blackCenterX, blackCenterY)) {
             // Game Over!

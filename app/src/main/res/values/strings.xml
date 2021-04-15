@@ -8,5 +8,6 @@
     <string name="tap_to_start">タップしてスタート</string>
     <string name="score">Score : %d</string>
     <string name="high_score">High Score : %d</string>
+    <string name="result_score">%d</string>
     <string name="try_again">もう一度プレイ</string>
 </resources>

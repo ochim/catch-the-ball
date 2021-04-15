@@ -9,10 +9,8 @@ public class SoundPlayer {
     private static int hitSound;
     private static int overSound;
 
-    private AudioAttributes audioAttributes;
-
     public SoundPlayer(Context context) {
-        audioAttributes = new AudioAttributes.Builder()
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_GAME)
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                 .build();
