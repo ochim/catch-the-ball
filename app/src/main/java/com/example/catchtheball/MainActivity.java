@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private float blackX;
     private float blackY;
 
+    // Score
+    private int score = 0;
+
     // Handler & Timer
     private Handler handler = new Handler();
     private Timer timer = new Timer();
@@ -74,14 +77,21 @@ public class MainActivity extends AppCompatActivity {
         pink.setY(-80.0f);
         black.setX(-80.0f);
         black.setY(-80.0f);
+
+        scoreLabel.setText("Score : 0");
     }
 
     private void changePos() {
+
+        hitCheck();
+
+        scoreLabel.setText("Score : " + score);
+
         // Orange
         orangeX -= 12;
         if (orangeX < 0) {
             orangeX = screenWidth + 20;
-            orangeY = (float)Math.floor(Math.random() * (frameHeight - orange.getHeight()));
+            orangeY = (float) Math.floor(Math.random() * (frameHeight - orange.getHeight()));
         }
         orange.setX(orangeX);
         orange.setY(orangeY);
@@ -90,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         blackX -= 16;
         if (blackX < 0) {
             blackX = screenWidth + 10;
-            blackY = (float)Math.floor(Math.random() * (frameHeight - black.getHeight()));
+            blackY = (float) Math.floor(Math.random() * (frameHeight - black.getHeight()));
         }
         black.setX(blackX);
         black.setY(blackY);
@@ -99,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         pinkX -= 20;
         if (pinkX < 0) {
             pinkX = screenWidth + 5000;
-            pinkY = (float)Math.floor(Math.random() * (frameHeight - pink.getHeight()));
+            pinkY = (float) Math.floor(Math.random() * (frameHeight - pink.getHeight()));
         }
         pink.setX(pinkX);
         pink.setY(pinkY);
@@ -115,6 +125,44 @@ public class MainActivity extends AppCompatActivity {
         if (boxY > frameHeight - boxSize) boxY = frameHeight - boxSize;
 
         box.setY(boxY);
+    }
+
+    private void hitCheck() {
+        // Orange
+        float orangeCenterX = orangeX + orange.getWidth() / 2;
+        float orangeCenterY = orangeY + orange.getHeight() / 2;
+
+        if (hitStatus(orangeCenterX, orangeCenterY)) {
+            orangeX = -10.0f;
+            score += 10;
+        }
+
+        // Pink
+        float pinkCenterX = pinkX + pink.getWidth() / 2;
+        float pinkCenterY = pinkY + pink.getHeight() / 2;
+
+        if (hitStatus(pinkCenterX, pinkCenterY)) {
+            pinkX = -10.0f;
+            score += 30;
+        }
+
+        // Black
+        float blackCenterX = blackX + black.getWidth() / 2;
+        float blackCenterY = blackY + black.getHeight() / 2;
+
+        if (hitStatus(blackCenterX, blackCenterY)) {
+            // Game Over!
+            if (timer != null) {
+                timer.cancel();
+                timer = null;
+            }
+
+            // 結果画面へ
+        }
+    }
+
+    private boolean hitStatus(float centerX, float centerY) {
+        return (0 <= centerX && centerX <= boxSize && boxY <= centerY && centerY <= boxY + boxSize);
     }
 
     @Override
