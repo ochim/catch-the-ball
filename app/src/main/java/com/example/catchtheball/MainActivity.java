@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra("SCORE", score);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -205,4 +206,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    public void onBackPressed() {}
 }
