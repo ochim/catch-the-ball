@@ -1,35 +1,33 @@
-package com.example.catchtheball;
+package com.example.catchtheball
 
-import android.content.Context;
-import android.media.AudioAttributes;
-import android.media.SoundPool;
+import android.content.Context
+import android.media.AudioAttributes
+import android.media.SoundPool
 
-public class SoundPlayer {
-    private static SoundPool soundPool;
-    private static int hitSound;
-    private static int overSound;
+class SoundPlayer(context: Context) {
+    private var soundPool: SoundPool
+    private var hitSound: Int
+    private var overSound: Int
 
-    public SoundPlayer(Context context) {
-        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+    init {
+        val audioAttributes = AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_GAME)
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .build();
-
-        soundPool = new SoundPool.Builder()
+                .build()
+        soundPool = SoundPool.Builder()
                 .setAudioAttributes(audioAttributes)
                 .setMaxStreams(2)
-                .build();
-
-        hitSound = soundPool.load(context, R.raw.hit, 1);
-        overSound = soundPool.load(context, R.raw.over, 1);
+                .build()
+        hitSound = soundPool.load(context, R.raw.hit, 1)
+        overSound = soundPool.load(context, R.raw.over, 1)
     }
 
-    public void playHitSound() {
-        soundPool.play(hitSound, 1.0f, 1.0f, 1, 0, 1.0f);
+    fun playHitSound() {
+        soundPool.play(hitSound, 1.0f, 1.0f, 1, 0, 1.0f)
     }
 
-    public void playOverSound() {
-        soundPool.play(overSound, 1.0f, 1.0f, 1, 0, 1.0f);
+    fun playOverSound() {
+        soundPool.play(overSound, 1.0f, 1.0f, 1, 0, 1.0f)
     }
 
 }

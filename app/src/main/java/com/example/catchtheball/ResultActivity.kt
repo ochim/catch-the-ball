@@ -1,46 +1,39 @@
-package com.example.catchtheball;
+package com.example.catchtheball
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
-import androidx.appcompat.app.AppCompatActivity;
+class ResultActivity : AppCompatActivity() {
 
-public class ResultActivity extends AppCompatActivity {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_result)
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        val scoreLabel = findViewById<TextView>(R.id.scoreLabel)
+        val highScoreLabel = findViewById<TextView>(R.id.highScoreLabel)
 
-        TextView scoreLabel = findViewById(R.id.scoreLabel);
-        TextView highScoreLabel = findViewById(R.id.highScoreLabel);
+        val score = intent.getIntExtra("SCORE", 0)
+        scoreLabel.text = getString(R.string.result_score, score)
 
-        int score = getIntent().getIntExtra("SCORE", 0);
-        scoreLabel.setText(getString(R.string.result_score, score));
-
-        SharedPreferences sharedPreferences = getSharedPreferences("GAME_DATA", MODE_PRIVATE);
-        int highScore = sharedPreferences.getInt("HIGH_SCORE", 0);
-
+        val sharedPreferences = getSharedPreferences("GAME_DATA", MODE_PRIVATE)
+        val highScore = sharedPreferences.getInt("HIGH_SCORE", 0)
         if (score > highScore) {
-            highScoreLabel.setText(getString(R.string.high_score, score));
-
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("HIGH_SCORE", score);
-            editor.apply();
-
+            highScoreLabel.text = getString(R.string.high_score, score)
+            val editor = sharedPreferences.edit()
+            editor.putInt("HIGH_SCORE", score)
+            editor.apply()
         } else {
-            highScoreLabel.setText(getString(R.string.score, highScore));
+            highScoreLabel.text = getString(R.string.score, highScore)
         }
     }
 
-    public void tryAgain(View view) {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+    fun tryAgain(view: View?) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
-    @Override
-    public void onBackPressed() { }
+    override fun onBackPressed() {}
 }

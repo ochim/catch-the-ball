@@ -1,21 +1,19 @@
-package com.example.catchtheball;
+package com.example.catchtheball
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 
-import androidx.appcompat.app.AppCompatActivity;
+class StartActivity : AppCompatActivity() {
 
-public class StartActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_start)
     }
 
-    public void startGame(View view) {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+    fun startGame(view: View?) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
