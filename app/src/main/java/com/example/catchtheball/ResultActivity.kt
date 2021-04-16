@@ -18,15 +18,13 @@ class ResultActivity : AppCompatActivity() {
         val score = intent.getIntExtra("SCORE", 0)
         scoreLabel.text = getString(R.string.result_score, score)
 
-        val sharedPreferences = getSharedPreferences("GAME_DATA", MODE_PRIVATE)
-        val highScore = sharedPreferences.getInt("HIGH_SCORE", 0)
+        val gameDatabase = GameDatabase(applicationContext);
+        val highScore = gameDatabase.highScore()
         if (score > highScore) {
             highScoreLabel.text = getString(R.string.high_score, score)
-            val editor = sharedPreferences.edit()
-            editor.putInt("HIGH_SCORE", score)
-            editor.apply()
+            gameDatabase.saveHighScore(score)
         } else {
-            highScoreLabel.text = getString(R.string.score, highScore)
+            highScoreLabel.text = getString(R.string.high_score, highScore)
         }
     }
 
