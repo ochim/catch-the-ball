@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.Display
 import android.view.MotionEvent
 import android.view.View
@@ -11,9 +12,7 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-
 import androidx.appcompat.app.AppCompatActivity
-
 import java.util.Timer
 import java.util.TimerTask
 
@@ -50,7 +49,7 @@ class MainActivity: AppCompatActivity() {
     private var score = 0
 
     // Handler & Timer
-    private val handler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
     private var timer: Timer? = Timer()
 
     // Status
