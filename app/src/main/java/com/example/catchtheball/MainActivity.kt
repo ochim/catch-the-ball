@@ -2,6 +2,7 @@ package com.example.catchtheball
 
 import android.content.Intent
 import android.graphics.Point
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,8 +14,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Timer
-import java.util.TimerTask
+import java.util.*
 
 class MainActivity: AppCompatActivity() {
 
@@ -72,12 +72,20 @@ class MainActivity: AppCompatActivity() {
         pink = findViewById(R.id.pink)
         black = findViewById(R.id.black)
 
-        val wm: WindowManager = getWindowManager()
-        val display: Display = wm.getDefaultDisplay()
-        val size = Point()
-        display.getSize(size)
-        screenWidth = size.x
-        val screenHeight = size.y
+        var screenHeight: Int = 0
+        // 画面サイズの取得
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            val wm: WindowManager = windowManager
+            val display: Display = wm.defaultDisplay
+            val size = Point()
+            display.getSize(size)
+            screenWidth = size.x
+            screenHeight = size.y
+        } else {
+            val windowMetrics = windowManager.currentWindowMetrics
+            screenWidth = windowMetrics.bounds.width()
+            screenHeight = windowMetrics.bounds.height()
+        }
 
         boxSpeed = Math.round(screenHeight / 60f)
         orangeSpeed = Math.round(screenWidth / 60f)
