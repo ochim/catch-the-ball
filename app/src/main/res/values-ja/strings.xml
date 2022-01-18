@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Catch the Ball</string>
+    <string name="point_pink">30 ポイント</string>
+    <string name="btn_start">スタート</string>
+    <string name="point_orange">10 ポイント</string>
+    <string name="point_black">ゲームオーバー</string>
+    <string name="game_over">ゲームオーバー</string>
+    <string name="tap_to_start">タップしてスタート</string>
+    <string name="score">スコア : %d</string>
+    <string name="high_score">ハイスコア : %d</string>
+    <string name="result_score">%d</string>
+    <string name="try_again">もう一度プレイ</string>
+</resources>
