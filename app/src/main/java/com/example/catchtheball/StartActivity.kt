@@ -14,9 +14,9 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-        MobileAds.initialize(this) {}
 
-        mAdView = this.findViewById(R.id.adView)
+        MobileAds.initialize(this) {}
+        mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
     }
