@@ -72,7 +72,7 @@ class MainActivity: AppCompatActivity() {
         pink = findViewById(R.id.pink)
         black = findViewById(R.id.black)
 
-        var screenHeight: Int = 0
+        var screenHeight: Int
         // 画面サイズの取得
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             val wm: WindowManager = windowManager
