@@ -45,12 +45,11 @@ class ResultActivity : AppCompatActivity() {
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d(TAG, adError.toString())
+                    Log.e(TAG, adError.toString())
                     mInterstitialAd = null
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    Log.d(TAG, "Ad was loaded.")
                     mInterstitialAd = interstitialAd
                 }
             })
@@ -65,14 +64,12 @@ class ResultActivity : AppCompatActivity() {
         mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdClicked() {
                 // Called when a click is recorded for an ad.
-                Log.d(TAG, "Ad was clicked.")
                 mInterstitialAd = null
                 goToMain()
             }
 
             override fun onAdDismissedFullScreenContent() {
                 // Called when ad is dismissed.
-                Log.d(TAG, "Ad dismissed fullscreen content.")
                 mInterstitialAd = null
                 goToMain()
             }
@@ -86,12 +83,10 @@ class ResultActivity : AppCompatActivity() {
 
             override fun onAdImpression() {
                 // Called when an impression is recorded for an ad.
-                Log.d(TAG, "Ad recorded an impression.")
             }
 
             override fun onAdShowedFullScreenContent() {
                 // Called when ad is shown.
-                Log.d(TAG, "Ad showed fullscreen content.")
             }
         }
         mInterstitialAd?.show(this)

@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 
 class GameDatabase(context: Context) {
-    private var sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences
 
     init {
         sharedPreferences = context.getSharedPreferences("GAME_DATA", AppCompatActivity.MODE_PRIVATE)
