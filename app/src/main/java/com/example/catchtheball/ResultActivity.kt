@@ -41,7 +41,7 @@ class ResultActivity : AppCompatActivity() {
 
         InterstitialAd.load(
             this,
-            "ca-app-pub-3940256099942544/1033173712",
+            "ca-app-pub-4255460803337831/5659872823",
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
