@@ -14,10 +14,15 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class MainActivity: AppCompatActivity() {
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var scoreLabel: TextView
     private lateinit var startLabel: TextView
     private lateinit var box: ImageView
@@ -62,6 +67,7 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        firebaseAnalytics = Firebase.analytics
 
         soundPlayer = SoundPlayer(this)
 
@@ -219,6 +225,11 @@ class MainActivity: AppCompatActivity() {
                 }
             }, 0, 20)
 
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+                param(FirebaseAnalytics.Param.ITEM_ID, "1")
+                param(FirebaseAnalytics.Param.ITEM_NAME, "Game Start")
+                param(FirebaseAnalytics.Param.CONTENT_TYPE, "Screen")
+            }
 
         } else {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {

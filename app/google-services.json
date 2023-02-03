@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "13688863733",
+    "firebase_url": "https://newagent-51314.firebaseio.com",
+    "project_id": "newagent-51314",
+    "storage_bucket": "newagent-51314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13688863733:android:4726c62538d7d1efe23ebc",
+        "android_client_info": {
+          "package_name": "com.mochi.catchtheball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13688863733-gbbrl3s4lkh1gj3ngn8io7bn9k4dp7ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ6oQcWylVFhBwARbXBe7e8Mn3qQXjSbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13688863733-gbbrl3s4lkh1gj3ngn8io7bn9k4dp7ep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

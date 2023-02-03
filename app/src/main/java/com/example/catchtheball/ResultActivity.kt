@@ -9,15 +9,21 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 
 class ResultActivity : AppCompatActivity() {
-    lateinit var mAdView: AdView
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var mAdView: AdView
     private var mInterstitialAd: InterstitialAd? = null
     private val TAG = "ResultActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+        firebaseAnalytics = Firebase.analytics
 
         val scoreLabel = findViewById<TextView>(R.id.scoreLabel)
         val highScoreLabel = findViewById<TextView>(R.id.highScoreLabel)
@@ -56,6 +62,12 @@ class ResultActivity : AppCompatActivity() {
     }
 
     fun tryAgain(view: View?) {
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+            param(FirebaseAnalytics.Param.ITEM_ID, "2")
+            param(FirebaseAnalytics.Param.ITEM_NAME, "Play again")
+            param(FirebaseAnalytics.Param.CONTENT_TYPE, "Button")
+        }
+
         if (mInterstitialAd == null) {
             goToMain()
             return
