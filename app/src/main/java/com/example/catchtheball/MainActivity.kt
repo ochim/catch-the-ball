@@ -13,12 +13,14 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 class MainActivity: AppCompatActivity() {
 
@@ -67,6 +69,7 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        onBackPressedDispatcher.addCallback(backPressedCallback)
         firebaseAnalytics = Firebase.analytics
 
         soundPlayer = SoundPlayer(this)
@@ -242,6 +245,10 @@ class MainActivity: AppCompatActivity() {
         }
         return true
     }
+}
 
-    override fun onBackPressed() {}
+val backPressedCallback = object : OnBackPressedCallback(true) {
+    override fun handleOnBackPressed() {
+        return
+    }
 }
