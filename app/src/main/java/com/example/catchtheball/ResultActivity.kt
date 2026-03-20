@@ -18,6 +18,11 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+private const val AD_UNIT_ID = "ca-app-pub-4255460803337831/5659872823"
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
@@ -46,25 +51,34 @@ class ResultActivity : AppCompatActivity() {
             highScoreLabel.text = getString(R.string.high_score, highScore)
         }
 
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        setupAd()
+    }
 
-        InterstitialAd.load(
-            this,
-            "ca-app-pub-4255460803337831/5659872823",
-            adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.e(TAG, adError.toString())
-                    mInterstitialAd = null
-                }
+    private fun setupAd() {
+        CoroutineScope(Dispatchers.IO).launch {
+            MobileAds.initialize(this@ResultActivity) {
+                runOnUiThread {
+                    mAdView = findViewById(R.id.adView)
+                    val adRequest = AdRequest.Builder().build()
+                    mAdView.loadAd(adRequest)
 
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    mInterstitialAd = interstitialAd
+                    InterstitialAd.load(
+                        this@ResultActivity,
+                        AD_UNIT_ID,
+                        adRequest,
+                        object : InterstitialAdLoadCallback() {
+                            override fun onAdFailedToLoad(adError: LoadAdError) {
+                                Log.e(TAG, adError.toString())
+                                mInterstitialAd = null
+                            }
+
+                            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                                mInterstitialAd = interstitialAd
+                            }
+                        })
                 }
-            })
+            }
+        }
     }
 
     fun tryAgain(view: View?) {

@@ -11,6 +11,9 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class StartActivity : AppCompatActivity() {
     private lateinit var mAdView: AdView
@@ -20,11 +23,19 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         firebaseAnalytics = Firebase.analytics
+        setupAd()
+    }
 
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+    private fun setupAd() {
+        CoroutineScope(Dispatchers.IO).launch {
+            MobileAds.initialize(this@StartActivity) {
+                runOnUiThread {
+                    mAdView = findViewById(R.id.adView)
+                    val adRequest = AdRequest.Builder().build()
+                    mAdView.loadAd(adRequest)
+                }
+            }
+        }
     }
 
     fun startGame(view: View?) {
