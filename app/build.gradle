@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.example.catchtheball'
-    compileSdkVersion 35
+    compileSdkVersion 36
 
     defaultConfig {
         applicationId "com.mochi.catchtheball"
         minSdkVersion 23
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 12
         versionName "1.0.8"
 
